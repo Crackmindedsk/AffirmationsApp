@@ -15,16 +15,16 @@ import sharlene.work.affirmations.model.Affirmation
  */
 class ItemAdapter(
     private val context: Context,
-    private val dataset:List<Affirmation>)
-    :RecyclerView.Adapter<ItemAdapter.ItemViewHolder>(){
+    private val dataset: List<Affirmation>
+) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     //Provide a reference to the views for each data item
     //Complex data items may need more than one view per item, and
     //you provide access to all the views for a dat item in a view holder.
     //Each data item is just an affirmation object.
-    class ItemViewHolder(view:View):RecyclerView.ViewHolder(view){
-        val textView:TextView=view.findViewById(R.id.item_title)
-        val imageView:ImageView=view.findViewById(R.id.item_image)
+    class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val textView: TextView = view.findViewById(R.id.item_title)
+        val imageView: ImageView = view.findViewById(R.id.item_image)
     }
 
     /**
@@ -32,7 +32,8 @@ class ItemAdapter(
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         //create a new view
-        val adapterLayout=LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
+        val adapterLayout =
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return ItemViewHolder(adapterLayout)
     }
 
@@ -40,13 +41,13 @@ class ItemAdapter(
      * Replace the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item=dataset[position]
-        holder.textView.text=context.resources.getString(item.stringResourceId)
+        val item = dataset[position]
+        holder.textView.text = context.resources.getString(item.stringResourceId)
         holder.imageView.setImageResource(item.imageResourceId)
     }
 
     /**
      * Return the size of your dataset (invoked by the layout manager)
      */
-    override fun getItemCount()=dataset.size
+    override fun getItemCount() = dataset.size
 }
